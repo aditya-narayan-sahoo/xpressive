@@ -11,7 +11,7 @@ export const POSTS = [
     comments: [
       {
         _id: "1",
-        text: "Nice Tutorial",
+        text: "Hala Madrid !!",
         user: {
           username: "alinasahoo",
           profileImage: "/avatars/girl1.png",
@@ -32,7 +32,7 @@ export const POSTS = [
     comments: [
       {
         _id: "1",
-        text: "Nice Tutorial",
+        text: "I am also chill",
         user: {
           username: "alinasahoo",
           profileImage: "/avatars/girl2.png",
@@ -73,7 +73,7 @@ export const POSTS = [
     comments: [
       {
         _id: "1",
-        text: "Nice Tutorial",
+        text: "Good luck",
         user: {
           username: "alinasahoo",
           profileImage: "/avatars/girl3.png",

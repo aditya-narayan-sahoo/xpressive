@@ -26,8 +26,8 @@ const ProfilePage = () => {
     username: "adityans",
     profileImage: "/avatars/boy2.png",
     coverImage: "/cover.png",
-    bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    link: "https://youtube.com/@asaprogrammer_",
+    bio: "Making this xpressive app.",
+    link: "https://github.com/aditya-narayan-sahoo",
     following: ["1", "2", "3"],
     followers: ["1", "2", "3"],
   };
@@ -47,7 +47,6 @@ const ProfilePage = () => {
   return (
     <>
       <div className="flex-[4_4_0]  border-r border-gray-700 min-h-screen ">
-        {/* HEADER */}
         {isLoading && <ProfileHeaderSkeleton />}
         {!isLoading && !user && (
           <p className="text-center text-lg mt-4">User not found</p>
@@ -66,7 +65,6 @@ const ProfilePage = () => {
                   </span>
                 </div>
               </div>
-              {/* COVER IMG */}
               <div className="relative group/cover">
                 <img
                   src={coverImage || user?.coverImage || "/cover.png"}
@@ -85,16 +83,18 @@ const ProfilePage = () => {
                 <input
                   type="file"
                   hidden
+                  accept="image/*"
                   ref={coverImageRef}
                   onChange={(e) => handleImgChange(e, "coverImage")}
                 />
                 <input
                   type="file"
                   hidden
+                  accept="image/*"
                   ref={profileImageRef}
                   onChange={(e) => handleImgChange(e, "profileImage")}
                 />
-                {/* USER AVATAR */}
+
                 <div className="avatar absolute -bottom-16 left-4">
                   <div className="w-32 rounded-full relative group/avatar">
                     <img
@@ -150,12 +150,12 @@ const ProfilePage = () => {
                       <>
                         <FaLink className="w-3 h-3 text-slate-500" />
                         <a
-                          href="https://youtube.com/@asaprogrammer_"
+                          href="https://github.com/aditya-narayan-sahoo"
                           target="_blank"
                           rel="noreferrer"
                           className="text-sm text-blue-500 hover:underline"
                         >
-                          youtube.com/@asaprogrammer_
+                          github.com/aditya-narayan-sahoo
                         </a>
                       </>
                     </div>
@@ -163,7 +163,7 @@ const ProfilePage = () => {
                   <div className="flex gap-2 items-center">
                     <IoCalendarOutline className="w-4 h-4 text-slate-500" />
                     <span className="text-sm text-slate-500">
-                      Joined July 2021
+                      Joined June 2020
                     </span>
                   </div>
                 </div>
