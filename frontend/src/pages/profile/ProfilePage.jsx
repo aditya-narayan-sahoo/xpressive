@@ -2,7 +2,6 @@ import { Link, useParams } from "react-router-dom";
 import { FaLink } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 import { useEffect, useRef, useState } from "react";
-import { POSTS } from "../../utils/db/dummy";
 import { FaArrowLeft } from "react-icons/fa6";
 import Posts from "../../components/common/Posts";
 import EditProfileModal from "./EditProfileModal";
@@ -47,6 +46,27 @@ const ProfilePage = () => {
     },
   });
 
+  // Fetch posts for the user
+  const {
+    data: userPosts,
+    isLoading: isLoadingPosts,
+    isRefetching: isRefetchingPosts,
+  } = useQuery({
+    queryKey: ["userPosts", username],
+    queryFn: async () => {
+      try {
+        const res = await fetch(`/api/posts/user/${username}`);
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.error || "Failed to fetch posts");
+        }
+        return data;
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+  });
+
   const { updateProfile, isUpdatingProfile } = useUpdateUserProfile();
   const isMyProfile = authUser._id === user?._id;
   const memberSinceDate = formatMemberSinceDate(user?.createdAt);
@@ -71,7 +91,9 @@ const ProfilePage = () => {
   return (
     <>
       <div className="flex-[4_4_0]  border-r border-gray-700 min-h-screen ">
-        {(isLoading || isRefetching) && <ProfileHeaderSkeleton />}
+        {(isLoading || isRefetching || isLoadingPosts || isRefetchingPosts) && (
+          <ProfileHeaderSkeleton />
+        )}
         {!isLoading && !isRefetching && !user && (
           <p className="text-center text-lg mt-4">User not found</p>
         )}
@@ -85,7 +107,8 @@ const ProfilePage = () => {
                 <div className="flex flex-col">
                   <p className="font-bold text-lg">{user?.fullName}</p>
                   <span className="text-sm text-slate-500">
-                    {POSTS?.length} posts
+                    {userPosts?.length} posts{" "}
+                    {/* Update with actual number of posts */}
                   </span>
                 </div>
               </div>
